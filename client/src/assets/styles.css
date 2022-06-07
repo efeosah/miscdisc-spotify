@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding : 0;
+
+
+}
+
+
+ 
+
+button{
+    margin : 20rem 40rem;
+    width : 10rem;
+    height : 5rem;
+    border-radius: 5px 25px;
+    background: rgb(25,20,20);
+    color : white;
+    background: linear-gradient(90deg, rgba(25,20,20,1) 31%, rgba(29,185,84,1) 100%);
+}
