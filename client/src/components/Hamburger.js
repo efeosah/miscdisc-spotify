@@ -4,6 +4,6 @@ import styled from "styled-components";
 
 
 
-export const Ham = () => {
-    return <div>Ham</div>
+export const Ham = ({ Comp }) => {
+    return <Comp/>
 }

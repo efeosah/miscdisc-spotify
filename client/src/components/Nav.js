@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import { FiPlay, FiUser, FiUsers, FiSearch, FiCodesandbox } from 'react-icons/fi'
 
@@ -11,7 +11,7 @@ import { FiPlay, FiUser, FiUsers, FiSearch, FiCodesandbox } from 'react-icons/fi
 const Container = styled.div`
 
 
-    background : black;
+    background : #191414;
     color : white;
     display : flex;
     flex-direction : column;
@@ -32,16 +32,20 @@ const Container = styled.div`
             gap : 1.5rem;
 
             li{
-
+                color : #1DB954;
                 display : flex;
                 // cursor : pointer;
                 font-size : 2.2rem;
                 transition : 0.3 ease-in-out;
                 margin : 0.5rem 0;
                 &:hover{
-                    color:green;
+                    color:white;
 
                 }
+                
+            }
+            .selected{
+                color:white;
             }
 
         }
@@ -55,31 +59,34 @@ const Container = styled.div`
 
 
 
-export const Nav = ({curHam, updateHam}) => {
+export const Nav = ({curHam, updateHam, Comp}) => {
 
     const [active, setActive] = useState("");
 
-    // const update  = updateHam
-    console.log(updateHam)
-    console.log(curHam)
-    // console.log(props)
+    const handleClick = (comp) => {
 
-    const handleClick = () => {
-
-        console.log("clicked");
-        updateHam(!curHam)
-    
+        if(!(curHam && comp !== "")){
+            updateHam(!curHam)
+        }
+        
+        setActive(comp)
+        if(comp !== ""){
+            Comp(comp)
+        }
     }
+
+    
     
     const icons = [
     
-        {favicon : <FiUser/>, className : "", onClick : () => handleClick()},
-        {favicon : <FiSearch/>, className : "", onClick : () => handleClick()},
-        {favicon : <FiPlay/>, className : "", onClick : () => handleClick()},
-        {favicon : <FiUsers/>, className : "", onClick : () => handleClick()},
-        {favicon : <FiCodesandbox/>, className : "", onClick : () => handleClick()},
+        {favicon : <FiUser/>,  className : active === "about" ? 'selected' : '',comp : "about", onClick : (type) => handleClick(type)},
+        {favicon : <FiSearch/>, className : active === "search" ? 'selected' : '', comp : "search", onClick : (type) => handleClick(type)},
+        {favicon : <FiPlay/>, className : active === "play" ? 'selected' : '', comp : "play", onClick : (type) => handleClick(type)},
+        {favicon : <FiUsers/>, className : active === "friends" ? 'selected' : '', comp : "friends", onClick : (type) => handleClick(type)},
+        {favicon : <FiCodesandbox/>, className : active === "recommended" ? 'selected' : '', comp : "recommended", onClick : (type) => handleClick(type)},
     
     ]
+
 
     return (
         <Container>
@@ -90,7 +97,7 @@ export const Nav = ({curHam, updateHam}) => {
 
                     {icons.map(((icon, index) => {
                         return (
-                            <li key={index}className={icon.className} onClick={() => icon.onClick()}>
+                            <li key={index} className={icon.className} onClick={() => icon.onClick(active === icon.comp? "":icon.comp)}>
                             {icon.favicon}
                             </li>
                         )

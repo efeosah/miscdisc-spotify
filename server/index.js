@@ -48,6 +48,7 @@ app.get("/callback", function (req, res) {
     var code = req.query.code || null;
     var state = req.query.state || null;
 
+
     if (state === null) {
         res.redirect(
             "/#" +
@@ -72,6 +73,7 @@ app.get("/callback", function (req, res) {
         };
 
         request.post(authOptions, function (error, response, body) {
+            console.log(response.body)
             if (!error && response.statusCode === 200) {
                 const access_token = body.access_token;
                 const refresh_token = body.refresh_token;

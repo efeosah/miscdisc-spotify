@@ -1,7 +1,14 @@
 import axios from "axios";
 
+
+const baseURL = "https://api.spotify.com/v1/"
+
+//take care of tokens before 
+window.localStorage.removeItem('spotify_access_token');
+window.localStorage.removeItem('spotify_refresh_token');
+
 //TOKENS
-const EXPIRATION_TIME = 3600 * 1000; // 3600 seconds * 1000 = 1 hour in milliseconds
+const EXPIRATION_TIME = 3600; // 3600 seconds * 1000 = 1 hour in milliseconds
 
 const setTokenTimestamp = () =>
     window.localStorage.setItem("spotify_token_timestamp", Date.now());
@@ -23,18 +30,27 @@ export const getHashParams = () => {
     let e;
     const r = /([^&;=]+)=?([^&;]*)/g;
     const q = window.location.hash.substring(1);
+    // const split = q.split("&")
+    // const access = hashParams[0] = split[0].split("=")[1]
+    // hashParams[1] = split[1].split("=")[1]
+
+    // console.log("access: ", access)
+
     while ((e = r.exec(q))) {
-        hashParams[e[1]] = decodeURIComponent(e[2]);
+        hashParams[e[1]] = e[2];
     }
+
+    console.log(hashParams)
+
 
     return hashParams;
 };
 
 //Refresh the token
-const refreshAccessToken = async () => {
+export const refreshAccessToken = async () => {
     try {
         const { data } = await axios.get(
-            `/refresh_token?refresh_token=${getLocalRefreshToken()}`
+            `http://localhost:8888/refresh_token?refresh_token=${getLocalRefreshToken()}`
         );
         const { access_token } = data;
         setLocalAccessToken(access_token);
@@ -49,6 +65,7 @@ const refreshAccessToken = async () => {
 export const getAccessToken = () => {
     const { error, access_token, refresh_token } = getHashParams();
 
+    console.log(error)
     if (error) {
         console.error(error);
         refreshAccessToken();
@@ -61,6 +78,7 @@ export const getAccessToken = () => {
     }
 
     const localAccessToken = getLocalAccessToken();
+    console.log(localAccessToken)
 
     // If there is no ACCESS token in local storage, set it and return `access_token` from params
     if (
@@ -77,8 +95,31 @@ export const getAccessToken = () => {
 
 export const token = getAccessToken();
 
+export const logout = () => {
+    window.localStorage.removeItem('spotify_token_timestamp');
+    window.localStorage.removeItem('spotify_access_token');
+    window.localStorage.removeItem('spotify_refresh_token');
+    window.location.reload();
+};
+
+console.log(token)
+
 //API CALLS
 
-const header = {
-    // Authorization : `Bearer ${token}`
+const headers = {
+    Authorization : `Bearer ${token}`,
+    'Content-type' : 'application/json'
 };
+
+
+
+//Spotify API calls
+
+// export const getUser = () => axios.get(`${baseURL}me`, {header})
+export const getUser = () => fetch(`${baseURL}me`, {headers})
+
+export const search = () => fetch('https://api.spotify.com/v1/search?q=kanye&type=track%2Cartist%2Cplaylist&market=ES&limit=10&offset=0', {headers})
+
+search()
+.then(res => res.json())
+.then(data => console.log(data))
