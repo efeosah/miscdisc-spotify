@@ -11,27 +11,23 @@ const Container = styled.div`
 
     grid-template-columns : 99% 1%;
 
-    background : linear-gradient(transparent, rgba(0, 0, 0, 1));
-    background-color : rgb(32, 87, 100);
+    // background : linear-gradient(transparent, rgba(0, 0, 0, 1));
+    // background-color : rgb(32, 87, 100);
     .content{
         // background-color : #1DB954;
     }
-    .line{
-        background-color: white;
-        margin-top: 5rem 
-    }
+   
     
 
 `
 
-export const Recommended = () => {
+export const Radio = () => {
 
     return (
 
         <>
             <Container>
-                Friends_ham
-                {/* <div className='line'></div> */}
+                Radio_ham
 
             </Container>
         </>

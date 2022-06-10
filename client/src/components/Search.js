@@ -14,19 +14,15 @@ const Container = styled.div`
     color : black;
     height : 100%;
     width : 100%;
-    flex-direction : column;
+    margin-left : auto;
+    margin-right : auto;
+    align-items : center;
 
-    background : linear-gradient(transparent, rgba(0, 0, 0, 1));
-    background-color : rgb(32, 87, 100);
+    // flex-direction : column;
 
-    grid-template-columns : 99% 1%;
-    .content{
-        // background-color : black;
-    }
-    .line{
-        background-color: white;
-        margin-top: 5rem 
-    }
+    // background : linear-gradient(transparent, rgba(0, 0, 0, 1));
+    // background-color : rgb(32, 87, 100);
+
 
 `
 
@@ -39,11 +35,11 @@ const Form = styled.form`
     margin-top: 1.5rem;
     width: 80%;
     margin:auto;
-    margin-top : 1.5rem;
+    // margin-top : 0.5rem;
     cursor: auto;
     padding: 1rem;
     height: 1rem;
-    border-radius : 5rem;
+    border-radius : 2rem;
     
 
 `
@@ -99,7 +95,7 @@ const Result = styled.div`
             height : 3.5rem;
             padding : 12px;
             text-align : left;
-            // align-items : center;
+            align-items : center;
             box-sizing : border-box;
             display: grid;
             grid-template-columns: 10fr 1fr;
@@ -193,13 +189,19 @@ const Result = styled.div`
 
             
 
-            // #arrow{
-            //     color : green;
+            #arrow{
+                color : green;
+                item-align : center;
+                padding : auto;
+                margin : auto;
+                text-align : center;
 
-            //     &:hover{
-            //         color : white;
-            //     }
-            // }
+
+
+                // &:hover{
+                //     color : white;
+                // }
+            }
         }
         
     }
@@ -246,7 +248,7 @@ export const Search = () => {
                         <Button>
                             <FiSearch/>
                         </Button>
-                        <Input
+                        <Input spellCheck='false'
                             onChange={(e) => setInput(e.target.value)}
                             value={input}
                             placeholder='Artist, Songs, and More'>
@@ -254,7 +256,7 @@ export const Search = () => {
                         </Input>
                         
                     </Form>
-                    <Result>
+                    {/* <Result>
                         <ul>
                             {queryRes.length === 0 ? " " : Object.keys(queryRes).map((item, index) => {
                                 return (
@@ -265,14 +267,14 @@ export const Search = () => {
                                     className={index === active ? "active" : ""} 
                                     onClick={() => onResClick(index)}>
                                         <span>{capitalize(item)}</span>
-                                        <FiArrowRight id='arrow'/>
+                                        {/* <FiArrowRight id='arrow'/> 
                                     </li>
                                 )
                             })}
                         </ul>
-                    </Result>
+                    </Result> */}
                 </div>
-                <div className='line'></div>
+                {/* <div className='line'></div> */}
         </Container>
         
     )

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
-import { FiPlay, FiUser, FiUsers, FiSearch, FiCodesandbox } from 'react-icons/fi'
+import { FiPlay, FiUser, FiUsers, FiSearch, FiCodesandbox, FiRadio } from 'react-icons/fi'
 
 
 
@@ -62,10 +62,9 @@ const Container = styled.div`
 
 
 
-
 export const Nav = ({curHam, updateHam, Comp}) => {
 
-    const [active, setActive] = useState("");
+    const [active, setActive] = useState("about");
 
     const handleClick = (comp) => {
 
@@ -84,12 +83,15 @@ export const Nav = ({curHam, updateHam, Comp}) => {
     const icons = [
     
         {favicon : <FiUser/>,  className : active === "about" ? 'selected' : '',comp : "about", onClick : (type) => handleClick(type)},
-        {favicon : <FiSearch/>, className : active === "search" ? 'selected' : '', comp : "search", onClick : (type) => handleClick(type)},
         {favicon : <FiPlay/>, className : active === "play" ? 'selected' : '', comp : "play", onClick : (type) => handleClick(type)},
         {favicon : <FiUsers/>, className : active === "friends" ? 'selected' : '', comp : "friends", onClick : (type) => handleClick(type)},
         {favicon : <FiCodesandbox/>, className : active === "recommended" ? 'selected' : '', comp : "recommended", onClick : (type) => handleClick(type)},
+        {favicon : <FiRadio/>, className : active === "radio" ? 'selected' : '', comp : "radio", onClick : (type) => handleClick(type)},
+
     
     ]
+
+
 
 
     return (

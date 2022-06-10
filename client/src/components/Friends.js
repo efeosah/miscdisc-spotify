@@ -16,10 +16,7 @@ const Container = styled.div`
     .content{
         // background-color : #1DB954;
     }
-    .line{
-        background-color: white;
-        margin-top: 5rem 
-    }
+    
     
 
 `
@@ -30,7 +27,6 @@ export const Friends = () => {
         <>
             <Container>
                 Friends_ham
-                <div className='line'></div>
 
             </Container>
         </>

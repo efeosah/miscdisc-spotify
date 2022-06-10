@@ -16,10 +16,7 @@ const Container = styled.div`
     .content{
         // background-color : #1DB954;
     }
-    .line{
-        background-color: white;
-        margin-top: 5rem 
-    }
+    
     
 
 `
@@ -31,7 +28,6 @@ export const NowPlaying = () => {
         <>
             <Container>
                 Now Playing Ham
-                <div className='line'></div>
 
             </Container>
         </>

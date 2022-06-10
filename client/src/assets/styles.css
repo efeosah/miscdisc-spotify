@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
 
 *{
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     margin: 0;
     padding : 0;
     font-family: 'Koulen', cursive;
+    
 
+}
 
+body{
+    background : linear-gradient(transparent, rgba(0, 0, 0, 1));
+    background-color : rgb(32, 87, 100);
 }
 
 

@@ -12,6 +12,7 @@ import { Search } from './Search'
 import { Recommended } from './Recommended'
 import { Friends } from './Friends'
 import { NowPlaying } from './NowPlaying'
+import { Radio } from './Radio'
 
 const contentSize = "4vw 96vw";
 const hamContentSize = "4vw 21vw 75vw";
@@ -22,14 +23,16 @@ const Container = styled.div`
         // background : black;
         max-width : 100vw;
         max-height : 100vh;
+        // height : 100%;
         display : grid;
         overflow : hidden;
-        grid-template-rows : 95vh 5vh;
+        grid-template-rows : 100vh;
 
 
         .body{
             display:grid;
-            grid-template-columns : ${(props) => (props.ham ? hamContentSize : contentSize)};
+            // width : 100%;
+            grid-template-columns : ${(props) => (props.ham ? contentSize : contentSize)};
             // background-color: green;
             
 
@@ -43,7 +46,8 @@ const hamComponents = {
     'search' : Search,
     'friends' : Friends,
     'play' : NowPlaying,
-    'recommended' : Recommended
+    'recommended' : Recommended,
+    'radio' : Radio
 
 }
 
@@ -55,6 +59,7 @@ export const Dashboard = () => {
     const [useHam, setUseHam] = useState(false);
     const [hamComp, setHamComp] = useState('about')
 
+    const [content, setContent] = useState(null)
     
 
     const collapsibleHam = (state) => {
@@ -77,16 +82,16 @@ export const Dashboard = () => {
                     <Ham />
                 </div>} */}
 
-                {collapsibleHam(useHam)}
-
-                <div className='content'>
-                    <Content/>
-                </div>
+                {/* {collapsibleHam(useHam)} */}
+                <Content Cont={hamComponents[hamComp]}/>
+                {/* <div className='content'>
+                    
+                </div> */}
 
             </div>
-            <div className='footer'>
+            {/* <div className='footer'>
                 <Footer/>
-            </div>
+            </div> */}
 
 
 

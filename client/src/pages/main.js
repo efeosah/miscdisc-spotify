@@ -7,14 +7,14 @@ import { Login } from '../components/Login'
 import { Dashboard } from '../components/Dashboard'
 // 
 const hash = window.location.hash.substring(1)
-console.log(hash)
+// console.log(hash)
 
 
   
 export const Main= () => {
 
     const [accessToken, setToken] = useState('');
-    console.log(token)
+    // console.log(token)
 
     useEffect(() => {
         setToken(token)

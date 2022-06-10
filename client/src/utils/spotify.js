@@ -4,9 +4,9 @@ import axios from "axios";
 const baseURL = "https://api.spotify.com/v1/"
 
 //take care of tokens before 
-window.localStorage.removeItem('spotify_access_token');
-window.localStorage.removeItem('spotify_refresh_token');
-
+// window.localStorage.removeItem('spotify_access_token');
+// window.localStorage.removeItem('spotify_refresh_token');
+// window.localStorage.removeItem("spotify_token_timestamp")
 //TOKENS
 const EXPIRATION_TIME = 3600; // 3600 seconds * 1000 = 1 hour in milliseconds
 
@@ -48,12 +48,16 @@ export const getHashParams = () => {
 
 //Refresh the token
 export const refreshAccessToken = async () => {
+    window.localStorage.removeItem('spotify_access_token');
     try {
+        console.log(getLocalRefreshToken())
         const { data } = await axios.get(
             `http://localhost:8888/refresh_token?refresh_token=${getLocalRefreshToken()}`
         );
         const { access_token } = data;
+        console.log(access_token)
         setLocalAccessToken(access_token);
+        setTokenTimestamp();
         window.location.reload();
         return;
     } catch (e) {
@@ -65,7 +69,7 @@ export const refreshAccessToken = async () => {
 export const getAccessToken = () => {
     const { error, access_token, refresh_token } = getHashParams();
 
-    console.log(error)
+    // console.log(error)
     if (error) {
         console.error(error);
         refreshAccessToken();
@@ -118,6 +122,6 @@ const headers = {
 // export const getUser = () => axios.get(`${baseURL}me`, {header})
 export const getUser = () => fetch(`${baseURL}me`, {headers})
 
-export const search = (query) => fetch(`https://api.spotify.com/v1/search?q=${query}&type=track%2Cartist%2Cplaylist&market=ES&limit=10&offset=0`, {headers})
+export const search = (query) => fetch(`https://api.spotify.com/v1/search?q=${query}&type=album%2Ctrack%2Cartist%2Cplaylist&market=ES&limit=10&offset=0`, {headers})
 
 
