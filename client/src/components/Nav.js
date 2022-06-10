@@ -26,7 +26,7 @@ const Container = styled.div`
         flex-direction : flex;
         align-items : center;
         margin : auto;
-        margin-top : 2rem;
+        margin-top : 1.5rem;
 
 
         ul{
