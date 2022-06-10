@@ -11,12 +11,16 @@ import { FiPlay, FiUser, FiUsers, FiSearch, FiCodesandbox } from 'react-icons/fi
 const Container = styled.div`
 
 
-    background : #191414;
+    // background : #191414;
     color : white;
     display : flex;
     flex-direction : column;
     height : 100%;
     width : 100%;
+
+    background : linear-gradient(transparent, rgba(0, 0, 0, 1));
+    background-color : rgb(32, 87, 100);
+
     .navLinks{
         display : flex;
         flex-direction : flex;

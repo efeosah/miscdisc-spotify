@@ -118,8 +118,6 @@ const headers = {
 // export const getUser = () => axios.get(`${baseURL}me`, {header})
 export const getUser = () => fetch(`${baseURL}me`, {headers})
 
-export const search = () => fetch('https://api.spotify.com/v1/search?q=kanye&type=track%2Cartist%2Cplaylist&market=ES&limit=10&offset=0', {headers})
+export const search = (query) => fetch(`https://api.spotify.com/v1/search?q=${query}&type=track%2Cartist%2Cplaylist&market=ES&limit=10&offset=0`, {headers})
 
-search()
-.then(res => res.json())
-.then(data => console.log(data))
+

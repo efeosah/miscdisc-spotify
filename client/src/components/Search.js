@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import {FiSearch} from 'react-icons/fi'
 
@@ -13,12 +13,16 @@ const Container = styled.div`
     width : 100%;
     flex-direction : column;
 
-    grid-template-columns : 98% 2%;
+    background : linear-gradient(transparent, rgba(0, 0, 0, 1));
+    background-color : rgb(32, 87, 100);
+
+    grid-template-columns : 99% 1%;
     .content{
-        background-color : black;
+        // background-color : black;
     }
     .line{
         background-color: white;
+        margin-top: 5rem 
     }
 
 `
@@ -68,25 +72,70 @@ const Button = styled.button`
     color: black;
 `
 
+const Result = styled.div`
+    color : white;
+    margin : 1.5rem 0rem;
+    text-align: center;
+    
+    height : 3rem;
+    width : 100%;
+
+    ul{
+        list-style-type : none;
+        display : flex;
+        flex-direction : column;
+        gap : 1.5rem;
+
+
+        li{
+
+        }
+    }
+
+
+`
+
 export const Search = () => {
 
-    const [input, setInput] = useState("initialState");
+    const [input, setInput] = useState("");
+    const [queryRes, setRes] = useState({})
+
+    const onSubmit = (e) => {
+
+        e.preventDefault()
+        search(input)
+        .then(res => res.json())
+        .then(data => setRes(data))
+
+    }
+
+    useEffect(() => {
+        console.log(queryRes)
+        
+    }, [queryRes]);
+
     return (
         <Container>
                 <div className='content'>
-                    <Form>
+                    <Form 
+                        onSubmit={(e) => onSubmit(e)}>
 
                         <Button>
                             <FiSearch/>
                         </Button>
                         <Input
-                        onChange={(e) => setInput(e.target.value)}
-                        value={input}
-                        placeholder='Artist, Songs, and More'>
+                            onChange={(e) => setInput(e.target.value)}
+                            value={input}
+                            placeholder='Artist, Songs, and More'>
 
                         </Input>
                         
                     </Form>
+                    <Result>
+                        <ul>
+                            {queryRes.length === 0 ? " " : Object.keys(queryRes).map((item) => console.log(queryRes[item]))}
+                        </ul>
+                    </Result>
                 </div>
                 <div className='line'></div>
         </Container>
