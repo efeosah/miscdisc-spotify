@@ -21,11 +21,12 @@ const hamContentSize = "4vw 21vw 75vw";
 const Container = styled.div`
 
         // background : black;
-        max-width : 100vw;
-        max-height : 100vh;
-        // height : 100%;
+        // max-width : 100vw;
+        // max-height : 100vh;
+        height : 100%;
         display : grid;
         overflow : hidden;
+        overflow-x : hidden;
         grid-template-rows : 100vh;
 
 

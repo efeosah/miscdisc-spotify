@@ -22,10 +22,12 @@ const Container = styled.div`
     background-color : rgb(32, 87, 100);
 
     .navLinks{
+        position : fixed;
+
         display : flex;
         flex-direction : flex;
         align-items : center;
-        margin : auto;
+        margin : 1rem;
         margin-top : 1.5rem;
 
 
@@ -53,6 +55,7 @@ const Container = styled.div`
             }
 
         }
+
 
     }
     

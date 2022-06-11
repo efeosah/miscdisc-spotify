@@ -7,9 +7,9 @@ const Container = styled.div`
     positon : relative; 
     display: grid;
     color: black;
-    height: 100%;
+    height: 100vh;
     width: 100%;
-    // overflow : hidden;
+    overflow : hidden;
     padding: auto;
     // flex-direction : column;
     // padding-right : 3rem;
@@ -26,7 +26,7 @@ const Container = styled.div`
 
 const Body = styled.div`
     width: 99%;
-    height: 100%;
+    height: inherit;
     margin: auto;
     // background-color : black;
     // opacity : 0;
@@ -36,9 +36,10 @@ const Body = styled.div`
     text-align: center;
 
     display: grid;
-    grid-template-rows: 20fr 80fr;
+    grid-template-rows: 10fr 90fr;
 
     .header {
+        align-items: center;
         display: grid;
         grid-template-columns: 25fr 75fr;
     }

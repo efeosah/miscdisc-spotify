@@ -9,9 +9,35 @@
 
 }
 
+/* html{
+    min-height: 100% !important;
+    height: 100%;
+
+} */
+
 body{
     background : linear-gradient(transparent, rgba(0, 0, 0, 1));
     background-color : rgb(32, 87, 100);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+    background-color: rgb(32, 87, 100);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
 
 
