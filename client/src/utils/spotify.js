@@ -48,11 +48,10 @@ export const getHashParams = () => {
 
 //Refresh the token
 export const refreshAccessToken = async () => {
-    window.localStorage.removeItem('spotify_access_token');
     try {
-        console.log(getLocalRefreshToken())
+        // console.log(getLocalRefreshToken())
         const { data } = await axios.get(
-            `http://localhost:8888/refresh_token?refresh_token=${getLocalRefreshToken()}`
+            `/refresh_token?refresh_token=${getLocalRefreshToken()}`
         );
         const { access_token } = data;
         console.log(access_token)

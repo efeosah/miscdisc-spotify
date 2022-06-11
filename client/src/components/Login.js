@@ -2,6 +2,10 @@ import React from 'react'
 
 import styled, { keyframes } from 'styled-components'
 
+const LOGIN_URI =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:8888/login'
+    : 'https://miscdisc.herokuapp.com/login';
 
 const gradient = keyframes`
 {
@@ -49,7 +53,8 @@ const Container = styled.div`
 export const Login = () => {
 
     const handleClick = () => {
-        window.location.href = '/login'
+        console.log(process.env.NODE_ENV)
+        window.location.href = 'https://miscdisc.herokuapp.com/login'
     }
 
 

@@ -12,15 +12,17 @@ app.use(cors());
 app.use(express.json());
 
 const CLIENT_ID = process.env.CLIENT_ID;
-let REDIRECT_URL = process.env.REDIRECT_URI || "http://localhost:8888/callback";
-let CLIENT_URI = process.env.CLIENT_URI || "http://localhost:3000";
+let REDIRECT_URL = process.env.REDIRECT_URI ;
+let CLIENT_URI = process.env.CLIENT_URI;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const PORT = process.env.PORT;
 
-if (process.env.NODE_ENV !== "production") {
-    REDIRECT_URL = "http://localhost:8888/callback";
-    CLIENT_URI = "http://localhost:3000";
-}
+console.log(process.env.NODE_ENV)
+
+// if (process.env.NODE_ENV !== "production") {
+//     REDIRECT_URL = "http://localhost:8888/callback";
+//     CLIENT_URI = "http://localhost:3000";
+// }
 
 app.use(express.static(path.resolve(__dirname, "../client/build")))
     .use(cors())
@@ -93,7 +95,8 @@ app.get("/callback", function (req, res) {
         };
 
         request.post(authOptions, function (error, response, body) {
-            console.log(response.body);
+            // console.log(response.body);
+
             if (!error && response.statusCode === 200) {
                 const access_token = body.access_token;
                 const refresh_token = body.refresh_token;
@@ -120,7 +123,7 @@ app.get("/callback", function (req, res) {
 
 app.get("/refresh_token", function (req, res) {
     var refresh_token = req.query.refresh_token;
-    console.log(req);
+    // console.log(req);
     const authOptions = {
         url: "https://accounts.spotify.com/api/token",
         headers: {
