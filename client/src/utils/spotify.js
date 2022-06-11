@@ -124,6 +124,6 @@ export const getUser = () => fetch(`${baseURL}me`, {headers})
 
 export const search = (query) => fetch(`${baseURL}search?q=${query}&type=album%2Ctrack%2Cartist%2Cplaylist&market=ES&limit=10&offset=0`, {headers})
 
-export const getFeatured = () => fetch(`${baseURL}browse/featured-playlists?country=CA`, {headers})
+export const getFeatured = () => fetch(`${baseURL}browse/featured-playlists?country=CA&offset=4`, {headers})
 
 export const getRecentlyPlayed = () => fetch(`${baseURL}me/player/recently-played`, {headers})

@@ -7,16 +7,17 @@ const Container = styled.div`
     width : inherit;
     height : 100%;
 
-    background-color: #fff;
+    // background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 
     display : grid;
-    grid-template-rows : 80% 20%;
+    grid-template-rows : 83% 17%;
 
     &:hover{
-        opaque : 0.3;
+        opacity : 0.55;
+
     }
 
 
@@ -40,47 +41,35 @@ const ImageContainer = styled.div`
 const TextContainer = styled.div`
 
     position : relative;
-    color: black;
-    font-weight: bold;
-    // border: 3px solid #f1f1f1;
-    
-    // transform: translate(-50%, -50%);
-    z-index: 2;
-    // width: 80%;
-    // padding: 20px;
-    text-align: center;
+    color : white;
 
-    // .text{
-    //     // background-color: rgb(0,0,0); /* Fallback color */
-    //     // background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-    //     color: white;
-    //     filter: blur(0);
-    //     -webkit-filter: blur(0);
-    //     font-weight: bold;
-    //     // border: 3px solid #f1f1f1;
-    //     // position: absolute;
-    //     // top: 50%;
-    //     // left: 50%;
-    //     // transform: translate(-50%, -50%);
-    //     z-index: 2;
-    //     // width: 80%;
-    //     // padding: 20px;
-    //     text-align: center;
-    // }
+    padding-top : 5px;
+    font-size : 14px;
+
+    font-weight: bold;
+    
+    z-index: 2;
+    text-align: center;
+    align-items : center;
+   
 `
 
 const TextBackground = styled.div`
 
 
     height : 100%;
+    width : 100%;
 
-    display : flex;
-    flex-direction : column;
+
+    // display : flex;
+    // flex-direction : column;
     justify-content : center;
-    background-image : url(${(props) => props.img});
-    filter: blur(3rem);
+    background-image : linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.623)), url(${(props) => props.img});
+    filter: saturate(2) brightness(3) blur(3rem);
+    
+    
 
-    -webkit-filter: blur(2.5rem);
+    // -webkit-filter: blur(2rem);
     z-index : -1;
     
     /* Center and scale the image nicely */
@@ -94,11 +83,6 @@ const TextBackground = styled.div`
     down : 0;
 
     
-
-
-
-
-
 `
 
 

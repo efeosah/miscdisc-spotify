@@ -4,6 +4,9 @@ import styled from 'styled-components'
 import { FiPlayCircle } from 'react-icons/fi'
 import { TbDotsCircleHorizontal } from 'react-icons/tb'
 
+import { HiDotsCircleHorizontal } from 'react-icons/hi'
+import { AiFillPlayCircle } from 'react-icons/ai'
+
 
 const Container = styled.div`
 
@@ -41,7 +44,7 @@ const ImageContainer = styled.div`
     
 
     &:hover{
-        opacity : 0.5;
+        opacity : 0.7;
         cursor : pointer;
     }
 
@@ -50,7 +53,7 @@ const ImageContainer = styled.div`
         grid-template-columns: repeat(2, 1fr);
         width : 100%;
         height : 100%;
-        font-size: 2.3rem;
+        font-size: 2.2rem;
         color : white;
         position : relative;
         z-index : 10;
@@ -59,27 +62,31 @@ const ImageContainer = styled.div`
         // display : none;
 
         .right{
+            border-radius:100%;
+            background-color : black;
             display : inline-flex;
             position : absolute;
             right : 0;
             bottom : 0;
             &:hover{
-                color : pink;
+                color : #1DB954;
             }
         }
         .left{
+            border-radius:100%;
+            border-width:thin;
+            background-color : black;
             display : inline-flex;
             left : 0;
             position : absolute;
             bottom : 0;
             &:hover{
-                color : pink;
+                color : #1DB954;
             }
         }
 
         &:hover{
-            // visibility : visible;
-            opacity : 0.8;
+            opacity : 1;
             color : grey;
         }
 
@@ -167,8 +174,8 @@ export const CardMini = ({ data }) => {
 
                 <ImageContainer>
                     <div className='icons'>
-                        <FiPlayCircle className='left'/>
-                        <TbDotsCircleHorizontal className='right'/>
+                        <AiFillPlayCircle className='left'/>
+                        <HiDotsCircleHorizontal className='right'/>
                     </div>
                     <img alt='card img' src={data.track.album.images[0].url}>
                     </img>
