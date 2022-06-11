@@ -2,8 +2,9 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const querystring = require("query-string");
-const path = require('path');
+const path = require("path");
 const request = require("request");
+const history = require('connect-history-api-fallback')
 
 const app = express();
 
@@ -16,12 +17,26 @@ let CLIENT_URI = process.env.CLIENT_URI || "http://localhost:3000";
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const PORT = process.env.PORT;
 
-if (process.env.NODE_ENV !== 'production') {
-    REDIRECT_URL = 'http://localhost:8888/callback';
-    CLIENT_URI = 'http://localhost:3000';
+if (process.env.NODE_ENV !== "production") {
+    REDIRECT_URL = "http://localhost:8888/callback";
+    CLIENT_URI = "http://localhost:3000";
 }
 
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.resolve(__dirname, "../client/build")))
+    .use(cors())
+    .use(
+        history({
+            verbose: true,
+            rewrites: [
+                { from: /\/login/, to: "/login" },
+                { from: /\/callback/, to: "/callback" },
+                { from: /\/refresh_token/, to: "/refresh_token" },
+            ],
+        })
+    )
+    .use(express.static(path.resolve(__dirname, "../client/build")));
+
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 const generateRandomString = (length) => {
     let text = "";
@@ -54,7 +69,6 @@ app.get("/callback", function (req, res) {
     var code = req.query.code || null;
     var state = req.query.state || null;
 
-
     if (state === null) {
         res.redirect(
             "/#" +
@@ -79,7 +93,7 @@ app.get("/callback", function (req, res) {
         };
 
         request.post(authOptions, function (error, response, body) {
-            console.log(response.body)
+            console.log(response.body);
             if (!error && response.statusCode === 200) {
                 const access_token = body.access_token;
                 const refresh_token = body.refresh_token;
@@ -106,7 +120,7 @@ app.get("/callback", function (req, res) {
 
 app.get("/refresh_token", function (req, res) {
     var refresh_token = req.query.refresh_token;
-    console.log(req)
+    console.log(req);
     const authOptions = {
         url: "https://accounts.spotify.com/api/token",
         headers: {
@@ -131,8 +145,10 @@ app.get("/refresh_token", function (req, res) {
     });
 });
 
-app.get('*', function (request, response) {
-    response.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
+app.get("*", function (request, response) {
+    response.sendFile(
+        path.resolve(__dirname, "../client/public", "index.html")
+    );
 });
 
 app.listen(PORT, () => {
