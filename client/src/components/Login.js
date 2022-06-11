@@ -49,7 +49,7 @@ const Container = styled.div`
 export const Login = () => {
 
     const handleClick = () => {
-        window.location.href = 'http://localhost:8888/login'
+        window.location.href = '/login'
     }
 
 
