@@ -6,6 +6,7 @@ import { TbDotsCircleHorizontal } from 'react-icons/tb'
 
 import { HiDotsCircleHorizontal } from 'react-icons/hi'
 import { AiFillPlayCircle } from 'react-icons/ai'
+import { IoPlay, IoEllipsisHorizontal } from 'react-icons/io5'
 
 
 const Container = styled.div`
@@ -63,7 +64,7 @@ const ImageContainer = styled.div`
 
         .right{
             border-radius:100%;
-            background-color : black;
+            // background-color : grey;
             display : inline-flex;
             position : absolute;
             right : 0;
@@ -74,8 +75,9 @@ const ImageContainer = styled.div`
         }
         .left{
             border-radius:100%;
-            border-width:thin;
-            background-color : black;
+            // border-width:thin;
+            // background-color : black;
+            // align-items : center;
             display : inline-flex;
             left : 0;
             position : absolute;
@@ -87,7 +89,7 @@ const ImageContainer = styled.div`
 
         &:hover{
             opacity : 1;
-            color : grey;
+            color : white;
         }
 
     }
@@ -174,8 +176,8 @@ export const CardMini = ({ data }) => {
 
                 <ImageContainer>
                     <div className='icons'>
-                        <AiFillPlayCircle className='left'/>
-                        <HiDotsCircleHorizontal className='right'/>
+                        <IoPlay className='left'/>
+                        <IoEllipsisHorizontal className='right'/>
                     </div>
                     <img alt='card img' src={data.track.album.images[0].url}>
                     </img>

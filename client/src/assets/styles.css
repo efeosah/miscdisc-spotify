@@ -27,18 +27,20 @@ body{
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: linear-gradient(transparent, rgba(0, 0, 0, 1));
-    background-color: rgb(32, 87, 100);
+    /* background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+    background-color: rgb(32, 87, 100); */
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #888; 
+    border-radius: 20px;
+
 }
 
 /* Handle on hover */

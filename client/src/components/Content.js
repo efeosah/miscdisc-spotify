@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { MH } from "./MusicHeader";
 
 import { Search } from "./Search";
 
@@ -28,8 +29,7 @@ const Body = styled.div`
     width: 99%;
     height: inherit;
     margin: auto;
-    // background-color : black;
-    // opacity : 0;
+
     padding: 0.5rem;
 
     align-item: center;
@@ -53,6 +53,7 @@ export const Content = ({ Cont }) => {
                     {/* TODO */}
                     <div className="header">
                         <Search />
+                        <MH />
                     </div>
 
                     {/* NOW PLAYING */}

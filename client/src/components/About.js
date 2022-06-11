@@ -57,11 +57,6 @@ const SmallUlContain = styled.div`
 
         li {
             height: inherit;
-
-            // &:hover {
-            //     opacity: 0.8;
-            //     color: green;
-            // }
         }
     }
 `;
@@ -75,6 +70,7 @@ const Title = styled.div`
     width: 97%;
     height: 5rem;
     border-bottom: 1px solid grey;
+    
 
     .text {
         // text-align : left;
@@ -213,19 +209,22 @@ export const About = () => {
     useEffect(() => {
         getRecentlyPlayed()
             .then((res) => res.json())
-            .then((data) => setRecently(data));
+            .then((data) => setRecently(data))
+            .catch((error) => console.error(error));
     }, []);
 
     useEffect(() => {
         getUser()
             .then((res) => res.json())
-            .then((data) => setUser(data));
+            .then((data) => setUser(data))
+            .catch((error) => console.error(error));
     }, []);
 
     useEffect(() => {
         getFeatured()
             .then((res) => res.json())
-            .then((data) => setFeatured(data));
+            .then((data) => setFeatured(data))
+            .catch((error) => console.error(error));
     }, []);
 
     const handleUserClick = () => {};
@@ -234,7 +233,6 @@ export const About = () => {
         <>
             {user && (
                 <Container>
-
                     {featured && (
                         <>
                             <Title>
@@ -271,10 +269,6 @@ export const About = () => {
                         </>
                     )}
 
-                    
-
-                    
-
                     {recently && (
                         <>
                             <Info>
@@ -304,7 +298,6 @@ export const About = () => {
                     {/* <Info>
 
                     </Info> */}
-                    
                 </Container>
             )}
         </>

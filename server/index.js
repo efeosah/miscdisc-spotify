@@ -2,7 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const querystring = require("query-string");
-// const axios = require("axios");
+const path = require('path');
 const request = require("request");
 
 const app = express();
@@ -11,11 +11,17 @@ app.use(cors());
 app.use(express.json());
 
 const CLIENT_ID = process.env.CLIENT_ID;
-const REDIRECT_URL =
-    process.env.REDIRECT_URI || "http://localhost:8888/callback";
-const CLIENT_URI = process.env.CLIENT_URI || "http://localhost:3000";
+let REDIRECT_URL = process.env.REDIRECT_URI || "http://localhost:8888/callback";
+let CLIENT_URI = process.env.CLIENT_URI || "http://localhost:3000";
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const PORT = process.env.PORT;
+
+if (process.env.NODE_ENV !== 'production') {
+    REDIRECT_URL = 'http://localhost:8888/callback';
+    CLIENT_URI = 'http://localhost:3000';
+}
+
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 const generateRandomString = (length) => {
     let text = "";
@@ -123,6 +129,10 @@ app.get("/refresh_token", function (req, res) {
             });
         }
     });
+});
+
+app.get('*', function (request, response) {
+    response.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
 });
 
 app.listen(PORT, () => {

@@ -42,15 +42,34 @@ const TextContainer = styled.div`
 
     position : relative;
     color : white;
+    // height : 100%;
 
-    padding-top : 5px;
-    font-size : 14px;
+    // padding-top : 5px;
 
     font-weight: bold;
     
     z-index: 2;
-    text-align: center;
-    align-items : center;
+    // text-align: center;
+    // align-items : center;
+    
+
+    .text{
+        display : inline;
+        height : 100%;
+        width : 100%;
+        position : absolute;
+        margin :auto;
+        font-size : 14px;
+        text-align: center;
+        align-items : center;
+        justify-items : center;
+        
+        top : 0;
+        left : 0;
+        right : 0;
+        bottom : 0;
+        
+    }
    
 `
 
@@ -65,7 +84,7 @@ const TextBackground = styled.div`
     // flex-direction : column;
     justify-content : center;
     background-image : linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.623)), url(${(props) => props.img});
-    filter: saturate(2) brightness(3) blur(3rem);
+    filter: saturate(3) brightness(5) blur(3rem);
     
     
 
@@ -102,7 +121,7 @@ export const Card = ({ data }) => {
                 </ImageContainer>
 
                 <TextContainer >
-                    <div>{data.name}</div>
+                    <div className='text'>{data.name}</div>
                     <TextBackground img={data.images[0].url}></TextBackground>
                 </TextContainer>
             </Container>
